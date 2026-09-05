@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Md Sayadul Islam & Mim Akter ❤️ — Our Magical Love Story</title>
+    <meta name="description" content="A private interactive romantic cinematic movie and magical journey celebrating the eternal love of Md Sayadul Islam and Mim Akter.">
+    <meta name="theme-color" content="#050308">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="perfect-layout.css">
+
+    <!-- CDN Libraries: GSAP, ScrollTrigger, Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-heart">❤️</div>
+        <p class="loading-text">Loading our story...</p>
+    </div>
+
+    <!-- Film Grain Texture Overlay -->
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- Cinematic Vignette -->
+    <div class="cinematic-vignette" id="cinematic-vignette" aria-hidden="true"></div>
+
+    <!-- Cinematic Letterbox Bars -->
+    <div class="cinematic-bars" id="cinematic-bars" aria-hidden="true"></div>
+
+    <!-- Floating Light Leaks -->
+    <div class="light-leak light-leak-1" id="light-leak-1" aria-hidden="true"></div>
+    <div class="light-leak light-leak-2" id="light-leak-2" aria-hidden="true"></div>
+
+    <!-- Auto-Scroll Cinematic Controller -->
+    <div id="auto-scroll-controller" class="auto-scroll-ctrl" aria-label="Auto-scroll controller">
+        <button id="auto-scroll-toggle" class="auto-scroll-btn" aria-label="Play or pause auto-scroll" title="Auto Play / Pause">
+            <svg id="auto-play-icon" class="auto-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"></polygon></svg>
+            <svg id="auto-pause-icon" class="auto-icon hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+        </button>
+        <div class="auto-scroll-timer" id="auto-scroll-timer">
+            <svg class="timer-ring" viewBox="0 0 36 36">
+                <circle class="timer-track" cx="18" cy="18" r="16"></circle>
+                <circle class="timer-fill" id="timer-fill" cx="18" cy="18" r="16"></circle>
+            </svg>
+            <span class="timer-label" id="timer-label">5</span>
+        </div>
+        <span class="auto-scroll-status" id="auto-scroll-status">Auto Play</span>
+    </div>
+
+    <!-- Pause Overlay — shown when user touches during auto-play -->
+    <div class="auto-pause-overlay" id="auto-pause-overlay" aria-hidden="true">
+        <div class="pause-badge">
+            <span class="pause-badge-icon">⏸</span>
+            <span class="pause-badge-text">Paused — Release to continue</span>
+        </div>
+    </div>
+
+    <!-- Section Indicator Dots -->
+    <div class="auto-section-indicator" id="auto-section-indicator" aria-hidden="true"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Background Adaptive Particle Canvas -->
+    <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- Desktop Cursor Glow -->
+    <div id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Cinematic Scene Transition Overlay -->
+    <div id="cinematic-transition" aria-hidden="true">
+        <div class="transition-vortex"></div>
+    </div>
+
+    <!-- Floating Audio Player Controller -->
+    <div id="audio-controller" class="glass-pill" aria-label="Audio controller">
+        <button id="audio-toggle" class="audio-btn" aria-label="Play or pause background music" title="Toggle Music">
+            <span class="audio-icon playing-icon" aria-hidden="true">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+            </span>
+            <span class="audio-text" id="audio-status-text">Play Music</span>
+        </button>
+        <div class="volume-slider-wrap" title="Music Volume">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.75" aria-label="Volume slider">
+        </div>
+        <audio id="bg-music" loop preload="auto" playsinline>
+            <source src="assets/music/song.mp3" type="audio/mpeg">
+            <source src="assets/music/song.mp3" type="audio/wav">
+        </audio>
+    </div>
+
+    <!-- MAIN FLOW CONTAINER -->
+    <main id="main-content">
+
+        <!-- ==========================================
+             SCENE BREAK — AFTER LOGIN
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter I</span>
+            <h2 class="break-title">Our Story Begins</h2>
+            <p class="break-subtitle">Every love story is beautiful, but ours is my favorite.</p>
+            <div class="break-divider"></div>
+            <span class="break-year">2 0 2 6</span>
+        </div>
+
+        <!-- ==========================================
+             PAGE 01 — CINEMATIC LOGIN (STRICTLY FOR MIM)
+             ========================================== -->
+        <section id="login" class="scene active-scene" aria-label="Cinematic Login">
+            <div class="scene-sky-bg" aria-hidden="true">
+                <div class="aurora-glow aurora-1"></div>
+                <div class="aurora-glow aurora-2"></div>
+            </div>
+
+            <div class="login-wrapper">
+                <!-- Glowing Pulsing Heart Emblem -->
+                <div class="login-emblem-wrap">
+                    <div class="pulse-ring ring-1"></div>
+                    <div class="pulse-ring ring-2"></div>
+                    <div class="beating-heart-svg glow-pink">
+                        <svg viewBox="0 0 100 100" class="heart-svg">
+                            <path d="M50,88.5 C48,86.5 10,55 10,32 C10,17 22,5 37,5 C44.5,5 50,11 50,11 C50,11 55.5,5 63,5 C78,5 90,17 90,32 C90,55 52,86.5 50,88.5 Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="login-header">
+                    <h1 class="cinematic-title">Welcome to Our Little Universe</h1>
+                    <p class="cinematic-subtitle">Dedicated to the one and only <span class="highlight-mim">Mim Akter</span> ❤️</p>
+                </div>
+
+                <!-- Glass Login Card -->
+                <div class="glass-card login-card" id="login-card">
+                    <form id="login-form" autocomplete="off">
+                        <div class="input-group">
+                            <label for="login-nickname">Your Special Name</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👑</span>
+                                <input type="text" id="login-nickname" placeholder="Enter username (Hint: Mim)" required autocomplete="username">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="login-password">Secret Password</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🗝️</span>
+                                <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <div id="login-error" class="login-error-msg" role="alert" aria-live="polite"></div>
+
+                        <button type="submit" id="login-submit-btn" class="btn btn-primary magnetic-btn">
+                            <span class="btn-text">Enter Our World, Mim ❤️</span>
+                            <span class="btn-glow"></span>
+                        </button>
+                    </form>
+                    <p class="login-hint">🔒 Private sanctuary: Strictly reserved for <code>Mim</code> with password <code>forever</code> or <code>sayadul</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 02 — CINEMATIC INTRO
+             ========================================== -->
+        <section id="intro" class="scene" aria-label="Cinematic Introduction">
+            <div class="black-void" id="intro-void">
+                <div class="singularity-point" id="intro-singularity"></div>
+                <div class="intro-lens-flare" id="intro-flare"></div>
+            </div>
+
+            <div class="intro-content-container">
+                <div class="intro-quote-wrap">
+                    <p class="intro-line" id="intro-quote-1">Every love story is beautiful…</p>
+                    <p class="intro-line" id="intro-quote-2">But ours…</p>
+                    <p class="intro-line" id="intro-quote-3">…is my absolute favorite.</p>
+                </div>
+
+                <div class="intro-names-wrap" id="intro-names-card">
+                    <h2 class="couple-names-text" id="intro-couple-names">Md Sayadul Islam <span class="heart-symbol">❤️</span> Mim Akter</h2>
+                    <p class="intro-subtext">Our Magical Journey Begins Here.</p>
+                    <button id="skip-intro-btn" class="btn btn-secondary intro-continue-btn">Step Into The Magic ✨</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 03 — THE JOURNEY BEGINS: ROMANTIC CYCLE & LOVE TRAIN
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter II</span>
+            <h2 class="break-title">The Journey</h2>
+            <p class="break-subtitle">A magical ride carrying our love across a starry night of memories.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="home" class="scene scroll-scene" aria-label="The Journey Begins">
+            <div class="section-bg-glow"></div>
+
+            <div class="home-container">
+                <header class="scene-header">
+                    <span class="tagline-pill">Chapter 0 — The Departure</span>
+                    <h1 class="home-main-title">The Romantic Love Express</h1>
+                    <p class="home-sub">A magical ride carrying Sayadul & Mim across a starry night of memories</p>
+                    <div class="header-divider"></div>
+                </header>
+
+                <!-- Cinematic Animated Cycle & Train Stage -->
+                <div class="animated-journey-stage glass-card" id="journey-stage">
+                    <div class="journey-sky">
+                        <div class="journey-moon"></div>
+                        <div class="shooting-star star-1"></div>
+                        <div class="shooting-star star-2"></div>
+                    </div>
+
+                    <!-- Parallax Mountains & Silhouettes -->
+                    <div class="journey-mountains"></div>
+                    <div class="journey-hills"></div>
+
+                    <!-- Milestone Station Signs -->
+                    <div class="milestone-board">
+                        <span class="milestone-text">Next Stop: Mim's Heart ❤️</span>
+                    </div>
+
+                    <!-- The Romantic Steam Train -->
+                    <div class="train-track">
+                        <div class="rail-glow"></div>
+                        <div class="romantic-train" id="romantic-train" title="Tap the train to whistle!">
+                            <!-- Heart-shaped smoke puffs -->
+                            <div class="smoke-puff puff-1">❤️</div>
+                            <div class="smoke-puff puff-2">☁️</div>
+                            <div class="smoke-puff puff-3">❤️</div>
+
+                            <!-- Locomotive -->
+                            <div class="train-engine">
+                                <div class="train-chimney"></div>
+                                <div class="train-cabin">
+                                    <span class="train-driver">👨‍❤️‍👩</span>
+                                </div>
+                                <div class="train-light"></div>
+                            </div>
+                            <!-- Love Carriages -->
+                            <div class="train-carriage carriage-1">
+                                <span class="carriage-banner">Sayadul + Mim</span>
+                                <span class="carriage-hearts">💖 🌸</span>
+                            </div>
+                            <div class="train-carriage carriage-2">
+                                <span class="carriage-banner">Forever Bound</span>
+                                <span class="carriage-hearts">💍 ✨</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animated Tandem Cycle Rider -->
+                    <div class="cycle-track">
+                        <div class="romantic-bicycle" id="romantic-bicycle" title="Tap bicycle to ring the bell!">
+                            <div class="bike-balloon-cluster">
+                                <span class="balloon b-1">❤️</span>
+                                <span class="balloon b-2">💖</span>
+                                <span class="balloon b-3">✨</span>
+                            </div>
+                            <div class="bicycle-couple">
+                                <span class="rider-emoji">🚲👫</span>
+                            </div>
+                            <div class="bike-dust"></div>
+                        </div>
+                    </div>
+
+                    <div class="train-interaction-bar">
+                        <button id="train-whistle-btn" class="btn btn-secondary small-btn">
+                            <span>🔔 Ring Train Chime</span>
+                        </button>
+                        <span class="journey-hint">Tip: Tap the train or bicycle for a cute surprise!</span>
+                    </div>
+                </div>
+
+                <!-- Storybook Flow Next Chapter CTA -->
+                <div class="flow-next-bridge" data-target="story">
+                    <p class="bridge-caption">Ready to explore where it all started?</p>
+                    <button class="btn btn-primary grand-btn magnetic-btn continue-flow-btn" data-target="story">
+                        <span>Begin Chapter I: Our Story 🌸⬇️</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 04 — OUR STORY (Cinematic Chapters)
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter III</span>
+            <h2 class="break-title">Moments That<br>Matter</h2>
+            <p class="break-subtitle">The serendipitous moments that brought two souls together.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="story" class="scene scroll-scene" aria-label="Our Story Chapters">
+            <div class="story-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter I</span>
+                    <h2 class="scene-title">Our Story</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">The serendipitous moments that brought Sayadul and Mim together.</p>
+                </header>
+
+                <div class="story-chapters-wrapper" id="story-chapters">
+                    <!-- Chapter 1 -->
+                    <div class="story-chapter" data-chapter="1">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">I</span>
+                            <h3 class="chapter-quote">“Little Mim — ছোট্ট মিম…”</h3>
+                            <p class="chapter-description">একদিন এই পৃথিবীতে জন্ম নিয়েছিল এক মিষ্টি নিষ্পাপ ছোট্ট পরী। সে হয়তো তখন জানতোও না, বড় হয়ে সে সায়েদুলের সমস্ত অন্ধকার দূর করে তার পুরো জীবনকে ভালোবাসার আলোয় ভরিয়ে দেবে। The sweetest little angel born to become Sayadul's entire world ❤️</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/lettel%20MiM.jpg" alt="Little Mim" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">ছোট্ট পরী 👼✨</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 2 -->
+                    <div class="story-chapter reverse" data-chapter="2">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">II</span>
+                            <h3 class="chapter-quote">“When We Met First Time — প্রথম দেখা…”</h3>
+                            <p class="chapter-description">প্রথমবার চোখে চোখ পড়ার সেই অবিস্মরণীয় ক্ষণ! বুক ধক করে ওঠার মিষ্টি অনুভূতি, চোখের পলক বন্ধ হতে না চাওয়া। From that very first glance, time stood completely still and our eternal story began 🌸👀</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/when%20we%20meet%20frist%20time.jpg" alt="When We Met First Time" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">প্রথম দেখা 🌸👀</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 3 -->
+                    <div class="story-chapter" data-chapter="3">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">III</span>
+                            <h3 class="chapter-quote">“ক্লাস শেষে JP-তে প্রথম দেখা…”</h3>
+                            <p class="chapter-description">মিমের ক্লাস শেষ হওয়ার সেই ব্যাকুল অপেক্ষা... তারপর জেপিতে আমাদের সেই প্রথম দেখা! এক অদ্ভুত মিষ্টি লজ্জা, হৃদয়ের গভীরে আনন্দের শিহরন আর পাশাপাশি হাঁটার সেই জাদুকরী স্মৃতি 🏫💌</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/we%20meet%20frist%20time%20in%20jp%20after%20your%20class.jpg" alt="We Meet First Time In JP After Your Class" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">ক্লাস শেষে দেখা 🏫💌</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 4 -->
+                    <div class="story-chapter reverse" data-chapter="4">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">IV</span>
+                            <h3 class="chapter-quote">“Rain & Something Happened…”</h3>
+                            <p class="chapter-description">ঝুম বৃষ্টি নামছিল চারপাশে... আর সেই বৃষ্টির প্রতিটি শীতল ফোঁটায় রচিত হয়েছিল আমাদের এক মধুর গোপন গল্প। বৃষ্টিভেজা শীতল বাতাস আর কাছাকাছি দাঁড়িয়ে হৃদয়ের উষ্ণ অনুভব! Raindrops falling and unforgettable magic etched forever in our hearts 🌧️❤️</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/Rain%20and%20somthing%20hapend.jpg" alt="Rain and Something Happened" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">বৃষ্টির সেই গল্প 🌧️❤️</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 5 -->
+                    <div class="story-chapter" data-chapter="5">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">V</span>
+                            <h3 class="chapter-quote">“She Made It For Me…”</h3>
+                            <p class="chapter-description">মিম যখন পরম মমতা আর ভালোবাসায় নিজের কোমল হাত দিয়ে সায়েদুলের জন্য বিশেষ কিছু বানায়। সেই জিনিসের মাঝে জড়িয়ে থাকে তার অপরিসীম যত্ন, আন্তরিকতা আর ভালোবাসার অমূল্য স্পর্শ 🎁🧁</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/She%20made%20for%20me.jpg" alt="She Made For Me" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">মিমের নিজ হাতে তৈরি 🎁🧁</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 6 -->
+                    <div class="story-chapter reverse" data-chapter="6">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">VI</span>
+                            <h3 class="chapter-quote">“Unbelievable Birthday Story…”</h3>
+                            <p class="chapter-description">মিমের জন্মদিনের সেই দিনটির গল্প কোনো রোমাঞ্চকর সিনেমার চেয়ে কম ছিল না! এক অবিশ্বাস্য মুহূর্ত, সারপ্রাইজ, আর অন্তহীন হাসি-আনন্দের স্মৃতি। A magical birthday celebration filled with joy that we will cherish forever 🎂🎉</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/Unbeleable%20Story%20wher%20that%20day%20your%20birhday.jpg" alt="Unbelievable Birthday Story" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">জন্মদিনের সেই গল্প 🎂🎉</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 7 -->
+                    <div class="story-chapter highlight-chapter" data-chapter="7">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">VII</span>
+                            <h3 class="chapter-quote">“লাজুক লক্ষ্মী আমার…”</h3>
+                            <p class="chapter-description">সায়েদুলের সবচেয়ে আদরের, সবচেয়ে মায়ার লাজুক লক্ষ্মী মিম। ওর লজ্জা রাঙা মুখ, নিষ্পাপ মিষ্টি চাহনি আর ভালোবাসা সায়েদুলের জীবনের সর্বশ্রেষ্ঠ নেয়ামত। Forever my shy, gentle queen — my heart, my soul, and my home ❤️</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/Story/Lajuk%20lokhi%20amar.jpg" alt="লাজুক লক্ষ্মী আমার" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">লাজুক লক্ষ্মী 🌸👰</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                    <!-- Chapter 8 — pic1: যখন সে রাগ করে -->
+                    <div class="story-chapter reverse" data-chapter="8">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">VIII</span>
+                            <h3 class="chapter-quote">"যখন সে রাগ করে… মিষ্টি সে রাগ"</h3>
+                            <p class="chapter-description">মিম যখন রাগ করে, সারা দুনিয়া থমকে যায়। সেই অভিমানী ঠোঁট, সেই না-বলা কথার চাহনি — সায়েদুলের কাছে এটাই সবচেয়ে প্রিয় মুহূর্ত। রাগ করলেও সে হাজারগুণ সুন্দর। Even in anger, Mim is the most beautiful thing in Sayadul's world 😤❤️</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/pic1.jpeg" alt="যখন সে রাগ করে" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">মিষ্টি রাগ 😤❤️</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 9 — pic2 -->
+                    <div class="story-chapter" data-chapter="9">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">IX</span>
+                            <h3 class="chapter-quote">"একটি মুহূর্ত, হাজার স্মৃতি…"</h3>
+                            <p class="chapter-description">কিছু মুহূর্ত থাকে যেগুলো ক্যামেরায় ধরা পড়ে, কিন্তু অনুভব হৃদয়ে চিরকালের জন্য গেঁথে যায়। সায়েদুলের জীবনের সেরা স্মৃতিগুলোর একটি এটি — মিমকে কাছে পেয়ে পাওয়া এই ক্ষণটি। A moment frozen in time, forever precious to Sayadul's heart ✨💖</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/pic2.jpeg" alt="একটি মুহূর্ত" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">মধুর মুহূর্ত ✨💖</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 10 — pic3: একা একা মেহেদি দে -->
+                    <div class="story-chapter reverse" data-chapter="10">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">X</span>
+                            <h3 class="chapter-quote">"একা একা মেহেদি দেওয়ার গল্প…"</h3>
+                            <p class="chapter-description">মিম যখন একা একা নিজের হাতে মেহেদি লাগায়, সেই দৃশ্য দেখে সায়েদুলের মন ভরে যায় অদ্ভুত এক মায়ায়। প্রতিটি রেখায় যেন লুকিয়ে থাকে তার সৌন্দর্য, তার স্বতন্ত্রতা। Mim's delicate hands painting henna — the most enchanting sight Sayadul has ever seen 🌿💅</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/pic3.jpeg" alt="একা একা মেহেদি দেওয়া" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">মেহেদির রঙ 🌿💅</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 11 — pic4: চোখের মায়া -->
+                    <div class="story-chapter highlight-chapter" data-chapter="11">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">XI</span>
+                            <h3 class="chapter-quote">"চোখের মায়া — সায়েদুলের সর্বনাশ"</h3>
+                            <p class="chapter-description">মিমের চোখের দিকে তাকালে সায়েদুল পুরো পৃথিবী ভুলে যায়। সেই গভীর, মায়াবী চোখে এমন এক ভাষা আছে যা কোনো কথায় বলা যায় না। একবার সেই চোখে ডুবলে আর বের হওয়ার পথ থাকে না। Mim's eyes — the most beautiful universe Sayadul ever got lost in 👁️✨</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/pic4.jpeg" alt="চোখের মায়া" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">চোখের মায়া 👁️✨</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 12 — pic5: লাস্ট টাইম যেদিন দেখা হলো -->
+                    <div class="story-chapter reverse highlight-chapter" data-chapter="12">
+                        <div class="chapter-text-side">
+                            <span class="chapter-number">XII</span>
+                            <h3 class="chapter-quote">"সেই শেষ দেখা — মিষ্টি রাগ, মিষ্টি অভিমান…"</h3>
+                            <p class="chapter-description">শেষবার যেদিন দেখা হয়েছিল, সেদিন তুমি একটু রাগী ছিলে — একটু অভিমানী। কিন্তু সায়েদুলের কাছে সেটাই ছিল সবচেয়ে মনে রাখার মতো মুহূর্ত। তোমার সেই মিষ্টি দুষ্টু রাগ, সেই মিষ্টি অভিমান — সব কিছু সায়েদুলের বুকে আঁকা হয়ে আছে চিরকালের জন্য। The last time we met — your sweet anger, your sweet sulk — forever etched in Sayadul's heart 💔❤️</p>
+                        </div>
+                        <div class="chapter-media-side">
+                            <div class="glass-photo-frame tilt-card">
+                                <img src="assets/images/pic5.jpeg" alt="শেষ দেখা" class="story-photo" loading="lazy">
+                                <div class="photo-reflection"></div>
+                                <span class="photo-badge">শেষ দেখা 💔❤️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Chapter Bridge -->
+                <div class="flow-next-bridge" data-target="timeline">
+                    <p class="bridge-caption">Next, let's step along our journey timeline…</p>
+                    <button class="btn btn-primary magnetic-btn continue-flow-btn" data-target="timeline">
+                        <span>Travel Through Milestones ⏳⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 05 — RELATIONSHIP TIMELINE
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter IV</span>
+            <h2 class="break-title">Milestones</h2>
+            <p class="break-subtitle">Every step of our journey, etched in eternity.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="timeline" class="scene scroll-scene" aria-label="Relationship Timeline">
+            <div class="timeline-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter II</span>
+                    <h2 class="scene-title">Our Journey</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">Tap each station to recall the sweet moments that brought us here.</p>
+                </header>
+
+                <div class="timeline-track-wrap">
+                    <div class="timeline-line-glow" aria-hidden="true"></div>
+                    <div class="timeline-items" id="timeline-list">
+                        <!-- Rendered dynamically from CONFIG.timeline -->
+                    </div>
+                </div>
+
+                <!-- Next Chapter Bridge -->
+                <div class="flow-next-bridge" data-target="memories">
+                    <p class="bridge-caption">Treasured moments captured in time…</p>
+                    <button class="btn btn-primary magnetic-btn continue-flow-btn" data-target="memories">
+                        <span>Open 3D Keepsake Gallery 📸⬇️</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expanded Timeline Card Modal -->
+            <div id="timeline-modal" class="modal-backdrop" aria-hidden="true">
+                <div class="glass-card modal-card" id="timeline-modal-content">
+                    <button class="modal-close-btn" id="close-timeline-modal" aria-label="Close timeline event">&times;</button>
+                    <div class="modal-badge" id="modal-date">01</div>
+                    <h3 class="modal-title" id="modal-title">First Conversation</h3>
+                    <p class="modal-text" id="modal-desc">The moment everything started.</p>
+                    <div class="modal-hearts" aria-hidden="true">❤️ ✨ ❤️</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 06 — 3D MEMORY GALLERY
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter V</span>
+            <h2 class="break-title">Keepsakes</h2>
+            <p class="break-subtitle">Frozen moments of pure happiness, preserved forever.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="memories" class="scene scroll-scene" aria-label="Our Memories Gallery">
+            <div class="memories-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter III</span>
+                    <h2 class="scene-title">Keepsake Memories</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">Floating snapshots of Sayadul & Mim. Tap any photo to step inside.</p>
+                </header>
+
+                <!-- 3D Gallery Grid -->
+                <div class="gallery-wrapper" id="memory-gallery-grid">
+                    <!-- Rendered dynamically from CONFIG.memories -->
+                </div>
+
+                <!-- Next Chapter Bridge -->
+                <div class="flow-next-bridge" data-target="letters">
+                    <p class="bridge-caption">A handwritten letter sealed with love…</p>
+                    <button class="btn btn-primary magnetic-btn continue-flow-btn" data-target="letters">
+                        <span>Read Love Letter For Mim 💌⬇️</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fullscreen Lightbox Modal -->
+            <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+                <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close lightbox">&times;</button>
+                <div class="lightbox-card glass-card">
+                    <div class="lightbox-image-wrap">
+                        <img id="lightbox-img" src="" alt="Memory full view">
+                    </div>
+                    <div class="lightbox-details">
+                        <span class="lightbox-date" id="lightbox-date">Date</span>
+                        <h3 class="lightbox-title" id="lightbox-title">Title</h3>
+                        <p class="lightbox-location" id="lightbox-location">📍 Location</p>
+                        <p class="lightbox-description" id="lightbox-description">Description</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 07 — LOVE LETTER FOR MIM
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter VI</span>
+            <h2 class="break-title">Words From<br>the Heart</h2>
+            <p class="break-subtitle">A handwritten letter sealed with love, waiting just for you.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="letters" class="scene scroll-scene" aria-label="Romantic Love Letter">
+            <div class="letters-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter IV</span>
+                    <h2 class="scene-title">A Letter For Mim</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">Straight from Sayadul's soul. Tap the wax seal to open.</p>
+                </header>
+
+                <div class="envelope-stage">
+                    <div class="envelope-3d-wrap" id="envelope-interactive" tabindex="0" role="button" aria-label="Open romantic letter">
+                        <div class="envelope-body">
+                            <div class="env-back"></div>
+                            <div class="env-inside"></div>
+
+                            <div class="env-letter-paper" id="letter-paper">
+                                <div class="paper-texture"></div>
+                                <div class="letter-inner-content">
+                                    <div class="letter-wax-seal-small">❤️</div>
+                                    <div class="letter-typed-text" id="letter-text-box">
+                                        <!-- Populated from CONFIG.loveLetter -->
+                                    </div>
+                                    <div class="letter-signature" id="letter-author">Forever yours, Sayadul ❤️</div>
+                                </div>
+                            </div>
+
+                            <div class="env-left-flap"></div>
+                            <div class="env-right-flap"></div>
+                            <div class="env-bottom-flap"></div>
+                            <div class="env-top-flap" id="env-top-flap">
+                                <div class="wax-seal-badge" id="wax-seal">
+                                    <span class="seal-heart">❤️</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="envelope-action-bar">
+                        <span class="envelope-hint" id="envelope-status-hint">Tap the envelope to unseal ❤️</span>
+                        <button id="reclose-letter-btn" class="btn btn-secondary small-btn hidden">Fold Letter & Seal</button>
+                    </div>
+                </div>
+
+                <!-- Next Chapter Bridge to Love Quiz -->
+                <div class="flow-next-bridge" data-target="quiz">
+                    <p class="bridge-caption">Time for some fun! How well do you know our love story?</p>
+                    <button class="btn btn-primary grand-btn magnetic-btn continue-flow-btn" data-target="quiz">
+                        <span>Take The Love Test Quiz 💖⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 08 — LOVE TEST QUIZ (NEW MAGICAL FEATURE)
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter VII</span>
+            <h2 class="break-title">The Test</h2>
+            <p class="break-subtitle">How well do you know the language of our love?</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="quiz" class="scene scroll-scene" aria-label="Romantic Love Quiz">
+            <div class="quiz-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter V — Fun & Romance</span>
+                    <h2 class="scene-title">Our Love Test Quiz</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">Let's see how deeply Mim knows Sayadul's heart! Answer each question ❤️</p>
+                </header>
+
+                <div class="quiz-card-wrapper glass-card" id="quiz-box">
+                    <div class="quiz-header-bar">
+                        <span class="quiz-progress-label" id="quiz-question-counter">Question 1 of 4</span>
+                        <div class="quiz-progress-track">
+                            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-body">
+                        <h3 class="quiz-question-title" id="quiz-question-title">Who fell in love first?</h3>
+                        <div class="quiz-options-grid" id="quiz-options-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <div class="quiz-feedback-banner hidden" id="quiz-feedback">
+                        <span class="feedback-icon" id="feedback-icon">🎉</span>
+                        <p class="feedback-text" id="feedback-text">That is 100% correct! Sayadul is completely head over heels for Mim!</p>
+                    </div>
+
+                    <!-- Final Score Trophy Banner -->
+                    <div class="quiz-result-trophy hidden" id="quiz-result-trophy">
+                        <div class="trophy-icon">🏆</div>
+                        <h3 class="trophy-title">100% Eternal Soulmates!</h3>
+                        <p class="trophy-desc">Md Sayadul Islam & Mim Akter are written in the stars forever. No power in the world can match your bond! ❤️</p>
+                        <button id="quiz-replay-btn" class="btn btn-secondary small-btn">Play Quiz Again 🔄</button>
+                    </div>
+                </div>
+
+                <!-- Next Chapter Bridge to Midnight Heart Game -->
+                <div class="flow-next-bridge" data-target="game">
+                    <p class="bridge-caption">Now, a magical night awaits you…</p>
+                    <button class="btn btn-primary grand-btn magnetic-btn continue-flow-btn" data-target="game">
+                        <span>Play Midnight Heart Catcher 🌙⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 09 — MIDNIGHT HEART CATCHER MINI-GAME (NEW MAGICAL FEATURE)
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter VIII</span>
+            <h2 class="break-title">Starlight<br>Play</h2>
+            <p class="break-subtitle">Under the moonlit sky, hearts are falling just for you.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="game" class="scene scroll-scene" aria-label="Midnight Heart Catcher Mini Game">
+            <div class="game-container">
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter VI — Starlight Play</span>
+                    <h2 class="scene-title">Midnight Heart Catcher</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc">Glowing hearts are falling under the moonlight! Tap or catch 10 hearts to unlock Sayadul's secret love chest.</p>
+                </header>
+
+                <div class="game-stage-wrapper glass-card">
+                    <!-- Game Score Bar -->
+                    <div class="game-hud">
+                        <div class="score-pill">
+                            <span>Hearts Caught:</span>
+                            <strong id="game-heart-score">0 / 10</strong>
+                        </div>
+                        <div class="score-pill">
+                            <span>Target:</span>
+                            <strong>Secret Love Chest 🎁</strong>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Canvas Sky for Falling Hearts -->
+                    <div class="game-canvas-wrap" id="game-canvas-area">
+                        <div class="game-moon"></div>
+                        <div class="floating-basket" id="player-basket">🧺💖</div>
+                        <!-- Falling hearts spawned by JS -->
+                    </div>
+
+                    <!-- Live Pop-up Love Note when heart caught -->
+                    <div class="game-note-bubble" id="game-note-bubble">
+                        <span id="game-note-text">Tap the falling hearts to begin! ❤️</span>
+                    </div>
+
+                    <!-- Secret Chest Modal Unlocked -->
+                    <div class="secret-chest-modal hidden" id="secret-chest-modal">
+                        <div class="chest-box glass-card">
+                            <div class="chest-icon">🎁✨</div>
+                            <h3 class="chest-title">You Unlocked Sayadul's Heart!</h3>
+                            <p class="chest-message">“Mim, every heart you caught tonight is just a tiny speck compared to how much I love you. You are my world, my happiness, and my forever.”</p>
+                            <span class="chest-vow">— Sayadul ❤️</span>
+                            <button id="close-chest-btn" class="btn btn-primary small-btn">Thank You, My Love! 💖</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Chapter Bridge to Reasons -->
+                <div class="flow-next-bridge" data-target="reasons">
+                    <p class="bridge-caption">Why does Sayadul adore Mim so much?</p>
+                    <button class="btn btn-primary magnetic-btn continue-flow-btn" data-target="reasons">
+                        <span>Discover Why I Love You 💖⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ==========================================
+             PAGE 11 — OUR UNIVERSE (Three.js 3D Cosmos)
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter X</span>
+            <h2 class="break-title">Our<br>Universe</h2>
+            <p class="break-subtitle">Across billions of stars, somehow, we found each other.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="universe" class="scene scroll-scene" aria-label="3D Cosmos Universe">
+            <div id="three-universe-canvas" class="universe-3d-viewport" aria-hidden="true"></div>
+
+            <div class="universe-overlay-container">
+                <header class="scene-header light-header">
+                    <span class="scene-subtitle">Chapter VIII</span>
+                    <h2 class="scene-title">Our Cosmic Universe</h2>
+                    <div class="header-divider"></div>
+                </header>
+
+                <div class="universe-storyline" id="universe-narrative">
+                    <div class="universe-story-step step-1" data-step="1">
+                        <div class="glass-quote-pill">
+                            <p>“In this enormous universe…”</p>
+                        </div>
+                    </div>
+                    <div class="universe-story-step step-2" data-step="2">
+                        <div class="glass-quote-pill">
+                            <p>“…amidst billions of wandering stars…”</p>
+                        </div>
+                    </div>
+                    <div class="universe-story-step step-3" data-step="3">
+                        <div class="glass-quote-pill">
+                            <p>“Somehow, Sayadul found Mim.”</p>
+                        </div>
+                    </div>
+                    <div class="universe-story-step step-4 highlight-step" data-step="4">
+                        <div class="glass-quote-pill gold-pill">
+                            <p>“And in every lifetime, I would choose you again, Mim.”</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-next-bridge" data-target="future">
+                    <p class="bridge-caption">The future holding our hands…</p>
+                    <button class="btn btn-primary magnetic-btn continue-flow-btn" data-target="future">
+                        <span>See Our Future Horizon ✨⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- ==========================================
+             PAGE 13 — ANNIVERSARY COUNTDOWN
+             ========================================== -->
+        <div class="scene-break" data-scene-break="true">
+            <span class="break-chapter-label">Chapter XII</span>
+            <h2 class="break-title">The<br>Countdown</h2>
+            <p class="break-subtitle">Every second brings us closer to forever.</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="countdown" class="scene scroll-scene" aria-label="Anniversary Countdown">
+            <div class="countdown-container">
+                <div class="countdown-bg-heart" aria-hidden="true">
+                    <svg viewBox="0 0 100 100">
+                        <path d="M50,88.5 C48,86.5 10,55 10,32 C10,17 22,5 37,5 C44.5,5 50,11 50,11 C50,11 55.5,5 63,5 C78,5 90,17 90,32 C90,55 52,86.5 50,88.5 Z"/>
+                    </svg>
+                </div>
+
+                <header class="scene-header">
+                    <span class="scene-subtitle">Chapter X</span>
+                    <h2 class="scene-title">Our Special Day</h2>
+                    <div class="header-divider"></div>
+                    <p class="scene-desc" id="countdown-date-label">Counting down to our celebration</p>
+                </header>
+
+                <div class="countdown-board" id="countdown-board" role="timer" aria-live="polite">
+                    <div class="countdown-tile glass-card">
+                        <div class="tile-inner">
+                            <span class="tile-number" id="count-days">00</span>
+                            <span class="tile-label">Days</span>
+                        </div>
+                        <div class="tile-glow"></div>
+                    </div>
+                    <div class="countdown-tile glass-card">
+                        <div class="tile-inner">
+                            <span class="tile-number" id="count-hours">00</span>
+                            <span class="tile-label">Hours</span>
+                        </div>
+                        <div class="tile-glow"></div>
+                    </div>
+                    <div class="countdown-tile glass-card">
+                        <div class="tile-inner">
+                            <span class="tile-number" id="count-minutes">00</span>
+                            <span class="tile-label">Minutes</span>
+                        </div>
+                        <div class="tile-glow"></div>
+                    </div>
+                    <div class="countdown-tile glass-card">
+                        <div class="tile-inner">
+                            <span class="tile-number" id="count-seconds">00</span>
+                            <span class="tile-label">Seconds</span>
+                        </div>
+                        <div class="tile-glow"></div>
+                    </div>
+                </div>
+
+                <div class="anniversary-celebration-box glass-card hidden" id="celebration-box">
+                    <div class="celebration-fireworks-indicator">🎆 💖 🥂</div>
+                    <h3 class="celebration-title">Today is Our Day!</h3>
+                    <p class="celebration-sub">Happy Anniversary, My Mim!</p>
+                </div>
+
+                <div class="flow-next-bridge" data-target="surprise">
+                    <p class="bridge-caption">And now, the final grand surprise…</p>
+                    <button class="btn btn-primary grand-btn magnetic-btn continue-flow-btn" data-target="surprise">
+                        <span>The Grand Climax 🎁⬇️</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PAGE 14 — FINAL SURPRISE & CINEMATIC ENDING
+             ========================================== -->
+        <div class="scene-break scene-break-final" data-scene-break="true">
+            <span class="break-chapter-label">The Grand Finale</span>
+            <h2 class="break-title">One Last<br>Surprise</h2>
+            <p class="break-subtitle">Are you ready, Mim?</p>
+            <div class="break-divider"></div>
+        </div>
+
+        <section id="surprise" class="scene" aria-label="Final Surprise & Grand Climax">
+            <div class="surprise-container" id="surprise-pre-screen">
+                <div class="surprise-prompt-card glass-card">
+                    <div class="surprise-icon-badge">🎁</div>
+                    <h2 class="surprise-pre-title">One Last Thing, Mim…</h2>
+                    <p class="surprise-pre-sub">Are you ready for your surprise?</p>
+                    <button id="open-surprise-btn" class="btn btn-primary magnetic-btn grand-btn">
+                        <span class="btn-text">Open My Surprise, Mim ❤️</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fullscreen Cinematic Climax Movie Theater -->
+            <div id="cinema-theater" class="cinema-theater hidden" aria-hidden="true">
+                <div class="theater-blackout" id="theater-blackout"></div>
+                <div class="theater-glow-orb" id="theater-light-orb"></div>
+                <canvas id="surprise-fireworks-canvas"></canvas>
+
+                <div class="theater-content-stage" id="theater-stage">
+                    <div class="final-photo-container glass-photo-frame" id="final-photo-frame">
+                        <img src="assets/images/final-photo.jpeg" alt="Md Sayadul Islam and Mim Akter Together Forever" id="final-couple-img" class="final-photo-image">
+                        <div class="photo-reflection"></div>
+                    </div>
+
+                    <div class="final-lettering-stage" id="final-lettering">
+                        <h2 class="final-headline" id="final-head-msg"></h2>
+                        <p class="final-line" id="final-line-1"></p>
+                        <p class="final-line" id="final-line-2"></p>
+                        <h3 class="final-vow" id="final-vow-msg"></h3>
+                        <p class="final-signature" id="final-names-cross"></p>
+                    </div>
+
+                    <div class="epilogue-panel hidden" id="epilogue-panel">
+                        <p class="epilogue-text" id="epilogue-line-1">Our Story Is Still Being Written…</p>
+                        <p class="epilogue-text highlight-gold" id="epilogue-line-2">Chapter One: Complete ❤️</p>
+                        <p class="epilogue-text code-font" id="epilogue-line-3">Chapter Two: Loading<span class="blinking-cursor">_</span></p>
+                        <h3 class="epilogue-tbc" id="epilogue-tbc">To Be Continued with Mim…</h3>
+                        <div class="epilogue-heartbeat-icon">❤️</div>
+                        <button id="replay-experience-btn" class="btn btn-secondary small-btn">Revisit Our Journey 🔄</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App JavaScript Engine -->
+    <script src="script.js"></script>
+</body>
+</html>
