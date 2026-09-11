@@ -16,24 +16,19 @@ const CONFIG = {
     profilePhoto: "assets/images/pic1.jpeg",
     backgroundMusic: "assets/music/song.mp3",
 
-    loveLetter: `
-        My Dearest Mim,
+    loveLetter: `My Dearest Mim,
 
-        Thank you for coming into my life and turning my whole world into a beautiful dream.
+Thank you for coming into my life and turning my whole world into a beautiful dream.
 
-        Thank you for every gentle smile,
-        every late-night conversation,
-        and every little moment that made my heart race.
+Thank you for every gentle smile,
+every late-night conversation,
+and every little moment that made my heart race.
 
-        You made ordinary days feel magical.
+You made ordinary days feel magical.
 
-        No matter where our journey leads,
-        I promise to hold your hand, make you laugh,
-        and choose you more with every passing second.
-
-        Forever & always yours,
-        Sayadul ❤️
-    `,
+No matter where our journey leads,
+I promise to hold your hand, make you laugh,
+and choose you more with every passing second.`,
 
     reasons: [
         "Your breathtaking smile that brightens my whole day, Mim.",
@@ -932,9 +927,12 @@ function initLoveLetter() {
     const statusHint = document.getElementById("envelope-status-hint");
     const recloseBtn = document.getElementById("reclose-letter-btn");
 
-    if (!envelope || !textBox) return;
-
-    textBox.textContent = CONFIG.loveLetter.trim();
+    const cleanLetter = CONFIG.loveLetter
+        .split("\n")
+        .map((line) => line.trim())
+        .join("\n")
+        .trim();
+    textBox.textContent = cleanLetter;
     if (authorEl) authorEl.textContent = `Forever yours, ${CONFIG.coupleName1} ❤️`;
 
     const openLetter = () => {
