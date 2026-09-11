@@ -879,7 +879,7 @@ function initMemoryGallery() {
         card.className = "memory-card glass-card";
         card.innerHTML = `
             <div class="memory-img-box">
-                <img src="${mem.image}" alt="${mem.title}" class="memory-img" loading="lazy" onerror="this.onerror=null; this.src='assets/images/pic1.jpeg';">
+                <img src="${mem.image}" alt="${mem.title}" class="memory-img" loading="lazy" onerror="this.onerror=null; this.src='assets/images/pic1.jpeg';" style="max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain !important; display: block !important;">
                 <div class="memory-caption">
                     <span class="memory-date">${mem.date}</span>
                     <h4 class="memory-card-title">${mem.title}</h4>
