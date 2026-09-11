@@ -14,7 +14,7 @@ const CONFIG = {
     anniversaryDate: "2026-09-16T00:00:00",
 
     profilePhoto: "assets/images/pic1.jpeg",
-    backgroundMusic: "assets/music/song.mp3",
+    backgroundMusic: "assets/music/song.mp3?v=20260911_05",
 
     loveLetter: `My Dearest Mim,
 
